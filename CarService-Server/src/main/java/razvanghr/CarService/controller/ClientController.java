@@ -5,11 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import razvanghr.CarService.model.ClientRequestModel;
+import razvanghr.CarService.model.ClientResponseModel;
 import razvanghr.CarService.model.ClientsResponseModel;
 import razvanghr.CarService.service.CarService;
 import razvanghr.CarService.service.ClientService;
 
 @RestController()
+@CrossOrigin
 @RequestMapping(path = "api/v1/client")
 public class ClientController {
 
@@ -27,7 +29,7 @@ public class ClientController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getClient(@PathVariable Long id){
         try{
-            return ResponseEntity.ok().body(clientService.readClient(id));
+            return ResponseEntity.ok().body(new ClientResponseModel(clientService.readClient(id) , clientService.readClient(id).getCars().size()));
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
@@ -65,10 +67,11 @@ public class ClientController {
     }
 
 //    Get All Clients
+
     @GetMapping("/all")
     public ResponseEntity<?> getAllClients(){
         try{
-            ClientsResponseModel clientsResponseModel = new ClientsResponseModel(clientService.getAllClients() , clientService.getAllClients().size());
+            ClientsResponseModel clientsResponseModel = new ClientsResponseModel(clientService.getAllClients() , clientService.getAllClients().size() , carService.getAllCars().size());
             return ResponseEntity.ok().body(clientsResponseModel);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());

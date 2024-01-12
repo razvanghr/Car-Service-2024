@@ -6,11 +6,21 @@ public class ClientsResponseModel {
 
     private List<Client> clients;
     private int clientsNumber;
+    private int carNumbers;
 
 
-    public ClientsResponseModel(List<Client> clients, int clientsNumber) {
+    public ClientsResponseModel(List<Client> clients, int clientsNumber , int carNumbers) {
         this.clients = clients;
         this.clientsNumber = clientsNumber;
+        this.carNumbers = carNumbers;
+    }
+
+    public int getCarNumbers() {
+        return carNumbers;
+    }
+
+    public void setCarNumbers(int carNumbers) {
+        this.carNumbers = carNumbers;
     }
 
     public List<Client> getClients() {

@@ -68,7 +68,6 @@ public class Client {
         this.cars = cars;
     }
 
-
     public void addCarToArr(Car car){
         this.cars.add(car);
     }

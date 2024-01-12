@@ -63,6 +63,14 @@ public class CarService {
         updatedCar.updateCar(carRequestModel);
         carRepository.save(updatedCar);
     }
+
+//    Get All Cars
+
+    public List<Car> getAllCars() throws  CarNotExist{
+        List<Car> optionalCars = carRepository.findAll();
+
+        return  optionalCars;
+    }
 }
 
 

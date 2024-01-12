@@ -9,6 +9,7 @@ import razvanghr.CarService.service.CarService;
 import razvanghr.CarService.service.ClientService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "api/v1/car")
 public class CarController {
 
