@@ -47,7 +47,7 @@ const Navigation = () => {
           <MdDashboard /> Dashboard
         </Link>
         <Link to="/clients" className={url === "/clients" ? " active" : ""}>
-          <FaUsers /> Clients
+          <FaUsers /> Add Client
         </Link>
         <Link to="/cars" className={url === "/cars" ? " active" : ""}>
           <FaCarSide /> Cars

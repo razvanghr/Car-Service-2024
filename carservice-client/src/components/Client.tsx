@@ -12,6 +12,8 @@ type TClientProps = {
 const ClientStyled = styled.div`
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #a8a7a7;
 
   .client-info {
     display: flex;

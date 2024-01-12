@@ -16,6 +16,11 @@ const StyledCarCard = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-left: 20px;
+
+  p {
+    width: 20%;
+  }
 `;
 const Cars = ({ cars }: TCarsProps) => {
   return (
@@ -24,7 +29,6 @@ const Cars = ({ cars }: TCarsProps) => {
       {cars.map((car) => {
         return (
           <StyledCarCard key={car.id}>
-            <p>{car.id}</p>
             <p>{car.manufacture}</p>
             <p>{car.model}</p>
             <p>{car.odometer}</p>
