@@ -1,14 +1,33 @@
 import Navigation from "./components/Navigation";
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Cars from "./pages/Cars";
+import styled from "styled-components";
+import Clients from "./pages/Clients";
+import ClientPage from "./pages/ClientPage";
+
+const StyledApp = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding: 50px;
+  gap: 50px;
+`;
 
 function App() {
   return (
-    <div className="App">
+    <StyledApp>
       <BrowserRouter>
-        <Navigation />
+        <Navigation></Navigation>
+        <Routes>
+          <Route path="/" element={<Dashboard />}></Route>
+          <Route path="/clients" element={<Clients />}></Route>
+          <Route path="/cars" element={<Cars />}></Route>
+          <Route path="/client/:id" element={<ClientPage />}></Route>
+        </Routes>
       </BrowserRouter>
-    </div>
+    </StyledApp>
   );
 }
 
