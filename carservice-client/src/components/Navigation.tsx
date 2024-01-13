@@ -1,33 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-
 import { Link, useLocation } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { FaUsers, FaCarSide } from "react-icons/fa";
 
-const StyledNavigation = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-
-  nav {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    a {
-      text-decoration: none;
-      color: black;
-      font-weight: 600;
-      font-size: 1.3rem;
-    }
-
-    .active {
-      background-color: #3a4d39;
-      color: #ffff;
-    }
-  }
-`;
+import { StyledNavigation } from "../styles/Navigation.styled";
 
 const Navigation = () => {
   const location = useLocation();
@@ -49,8 +25,11 @@ const Navigation = () => {
         <Link to="/clients" className={url === "/clients" ? " active" : ""}>
           <FaUsers /> Add Client
         </Link>
-        <Link to="/cars" className={url === "/cars" ? " active" : ""}>
-          <FaCarSide /> Cars
+        <Link
+          to="/search-client"
+          className={url === "/search-client" ? " active" : ""}
+        >
+          <FaCarSide /> Search Client
         </Link>
       </nav>
     </StyledNavigation>

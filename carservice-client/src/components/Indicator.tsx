@@ -1,15 +1,4 @@
-import React from "react";
-import styled from "styled-components";
-
-const StyledIndicator = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  h1 {
-    color: #3a4d39;
-  }
-`;
+import { StyledIndicator } from "../styles/Indicator.styled";
 
 type TIndicatorProps = {
   indicatorNumber: number;

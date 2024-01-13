@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { AddCarStyled } from "../components/AddCar";
-import { StyledButton } from "../components/AddCar";
+import { StyledButton } from "../styles/Button.styled";
+import { FormStyled } from "../styles/Form.styled";
 type TAddClient = {
   firstName: string;
   lastName: string;
@@ -42,7 +42,7 @@ const AddClientPage = () => {
     }
   };
   return (
-    <AddCarStyled>
+    <FormStyled>
       <div className="form-control">
         <label>First Name</label>
         <input
@@ -71,7 +71,7 @@ const AddClientPage = () => {
       </div>
       <StyledButton onClick={addClientRequest}>Add Client</StyledButton>
       <p>{responseStatus}</p>
-    </AddCarStyled>
+    </FormStyled>
   );
 };
 

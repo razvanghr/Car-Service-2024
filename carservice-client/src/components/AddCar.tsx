@@ -1,46 +1,15 @@
 import React from "react";
 
 import { useState } from "react";
-import styled from "styled-components";
 
-export const AddCarStyled = styled.form`
-  margin: 20px 0px;
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  align-items: center;
-  gap: 10px;
-
-  input {
-    font-size: 1.1rem;
-    outline: 0;
-    border-radius: 10px;
-    border: 2px solid #3a4d39;
-    text-align: center;
-  }
-
-  .form-control {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-export const StyledButton = styled.button`
-  background-color: #3a4d39;
-  border: 0;
-  color: #ffff;
-  font-size: 1rem;
-  text-transform: uppercase;
-  border-radius: 5px;
-  padding: 5px;
-`;
+import { FormStyled } from "../styles/Form.styled";
+import { StyledButton } from "../styles/Button.styled";
 
 type TAddCarBody = {
   manufacture: string;
   model: string;
   odometer: number;
+  caroserie: string;
 };
 
 type TAddCarProps = {
@@ -76,6 +45,7 @@ const AddCar = ({ getClientData, id }: TAddCarProps) => {
           manufacture: addCarData?.manufacture,
           model: addCarData?.model,
           odometer: addCarData?.odometer,
+          caroserie: addCarData?.caroserie,
           isRepaired: false,
         }),
         headers: {
@@ -91,7 +61,7 @@ const AddCar = ({ getClientData, id }: TAddCarProps) => {
     }
   };
   return (
-    <AddCarStyled>
+    <FormStyled>
       <div className="form-control">
         <label>Manufacture</label>
         <input
@@ -132,9 +102,28 @@ const AddCar = ({ getClientData, id }: TAddCarProps) => {
           }
         />
       </div>
+      <div className="form-control">
+        <label>Car Body</label>
+        <select
+          onChange={(e) =>
+            setAddCarData({
+              ...addCarData,
+              caroserie: e.target.value,
+            } as TAddCarBody)
+          }
+        >
+          <option value="default"></option>
+          <option value="Sedan">Sedan</option>
+          <option value="Pickup">Pickup</option>
+          <option value="Coupe">Coupe</option>
+          <option value="Hatchback">Hatchback</option>
+          <option value="Minivan">Minivan</option>
+          <option value="Liftback">Liftback</option>
+        </select>
+      </div>
       <StyledButton onClick={addCarRequest}>Add Car</StyledButton>
       <p>{responseStatus}</p>
-    </AddCarStyled>
+    </FormStyled>
   );
 };
 

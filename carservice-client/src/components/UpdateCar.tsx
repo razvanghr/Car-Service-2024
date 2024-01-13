@@ -2,8 +2,8 @@ import React from "react";
 
 import { useState } from "react";
 
-import { AddCarStyled } from "./AddCar";
-import { StyledButton } from "./AddCar";
+import { StyledButton } from "../styles/Button.styled";
+import { FormStyled } from "../styles/Form.styled";
 
 type TUpdateDataProps = {
   getClientData: () => Promise<void>;
@@ -14,11 +14,14 @@ type TUpdateCarBody = {
   manufacture: string;
   model: string;
   odometer: number;
+  caroserie: string;
+  isRepaired: boolean;
 };
 
 const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
   const [updateData, setUpdateData] = useState<TUpdateCarBody | null>(null);
   const [responseStatus, setResponseStatus] = useState<string | null>(null);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const updateCarRequest = async (e: any) => {
     e.preventDefault();
@@ -51,7 +54,8 @@ const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
             manufacture: updateData?.manufacture,
             model: updateData?.model,
             odometer: updateData?.odometer,
-            isRepaired: false,
+            caroserie: updateData.caroserie,
+            isRepaired: !isChecked,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +69,7 @@ const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
     }
   };
   return (
-    <AddCarStyled>
+    <FormStyled>
       <div className="form-control">
         <div className="form-control">
           <label>Id</label>
@@ -119,9 +123,39 @@ const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
           }}
         />
       </div>
+      <div className="form-control">
+        <label>Repaired</label>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => {
+            setIsChecked(!isChecked);
+            console.log(!isChecked);
+          }}
+        />
+      </div>
+      <div className="form-control">
+        <label>Car Body</label>
+        <select
+          onChange={(e) =>
+            setUpdateData({
+              ...updateData,
+              caroserie: e.target.value,
+            } as TUpdateCarBody)
+          }
+        >
+          <option value="default"></option>
+          <option value="Sedan">Sedan</option>
+          <option value="Pickup">Pickup</option>
+          <option value="Coupe">Coupe</option>
+          <option value="Hatchback">Hatchback</option>
+          <option value="Minivan">Minivan</option>
+          <option value="Liftback">Liftback</option>
+        </select>
+      </div>
       <StyledButton onClick={updateCarRequest}>Update Car</StyledButton>
       <p>{responseStatus}</p>
-    </AddCarStyled>
+    </FormStyled>
   );
 };
 

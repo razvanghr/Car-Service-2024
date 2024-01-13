@@ -1,46 +1,29 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import { useParams, useNavigate } from "react-router-dom";
 import { TClientById } from "../types/TClient";
 import { IoClose } from "react-icons/io5";
 import AddCar from "../components/AddCar";
 import UpdateCar from "../components/UpdateCar";
+import { StyledButton } from "../styles/Button.styled";
 
-const ClientPageStyled = styled.div`
-  width: 100%;
-  height: 120vh;
-
-  .form-container {
-    display: flex;
-    align-items: flex-start;
-    margin: 50px 0px;
-  }
-
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  td,
-  th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-
-  .td-actions {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-  }
-`;
+import { ClientPageStyled } from "../styles/ClientPage.styled";
 
 const ClientPage = () => {
   const { id } = useParams<string>();
-
+  const navigate = useNavigate();
   const [clientApiData, setClientApiData] = useState<TClientById | null>(null);
+
+  const deleteClientRequest = async () => {
+    try {
+      await fetch(`http://localhost:8080/api/v1/client/delete/${id}`, {
+        method: "DELETE",
+      });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getClientData = async () => {
     try {
@@ -53,7 +36,6 @@ const ClientPage = () => {
 
       const data = await response.json();
       setClientApiData(data);
-
       console.log(clientApiData);
     } catch (error) {
       console.log(error);
@@ -84,6 +66,11 @@ const ClientPage = () => {
             <p>First Name : {clientApiData.client.firstName}</p>
             <p>Last Name : {clientApiData.client.lastName}</p>
             <p>Number of cars : {clientApiData.carsNumber}</p>
+            {clientApiData.carsNumber === 0 && (
+              <StyledButton onClick={deleteClientRequest}>
+                Delete Client
+              </StyledButton>
+            )}
           </div>
           <div className="form-container">
             <AddCar getClientData={getClientData} id={id || ""} />

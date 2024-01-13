@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+
 import Indicator from "../components/Indicator";
 
 import { TApiResponse } from "../types/TAllResponse";
 import ClientsContainer from "../components/ClientsContainer";
-
-const StyledDashboard = styled.div`
-  width: 100%;
-  padding: 20px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-
-  .dashboard-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-  }
-`;
+import { StyledDashboard } from "../styles/Dashboard.styled";
 
 const Dashboard = () => {
   const [apiData, setApiData] = useState<TApiResponse | null>(null);
@@ -39,6 +25,7 @@ const Dashboard = () => {
   useEffect(() => {
     getApiResponse();
   }, []);
+
   return (
     <StyledDashboard>
       <div className="dashboard-header">
@@ -51,6 +38,7 @@ const Dashboard = () => {
           indicatorTitle="Total Cars"
         />
       </div>
+
       <ClientsContainer clientsList={apiData?.clients}></ClientsContainer>
     </StyledDashboard>
   );

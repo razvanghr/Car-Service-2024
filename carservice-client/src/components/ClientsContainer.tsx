@@ -1,18 +1,11 @@
 import React from "react";
-
 import Client from "./Client";
-
 import { TClient } from "../types/TClient";
-import styled from "styled-components";
+import { ClientsContainerStyled } from "../styles/ClientContainer.styled";
+
 type TClientsContainerProps = {
   clientsList: TClient[] | undefined;
 };
-
-const ClientsContainerStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-`;
 
 const ClientsContainer = ({ clientsList }: TClientsContainerProps) => {
   return (
