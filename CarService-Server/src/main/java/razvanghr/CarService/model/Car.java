@@ -2,8 +2,10 @@ package razvanghr.CarService.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Car {
 
 
@@ -12,9 +14,14 @@ public class Car {
     private Long id;
 
     public enum Caroserie{
-        BERLINA,
-        CORSA,
-        PAPUC
+        COUPE,
+        SEDAN,
+        PICKUP,
+        HATCHBACK,
+        MINIVAN,
+        LIFTBACK,
+        UNKNOWN
+
     }
 
     @Column(name = "Manufacture")
@@ -24,8 +31,6 @@ public class Car {
     private boolean isRepaired;
     @Enumerated(EnumType.STRING)
     private Caroserie caroserie;
-
-
     @JsonIgnore
     @ManyToOne()
     private Client client;
@@ -39,10 +44,10 @@ public class Car {
         this.client = client;
     }
 
-    public Car(CarRequestModel carRequestModel , Client client,  Caroserie caroserie){
+    public Car(CarRequestModel carRequestModel , Client client,  String caroserie){
         this.Manufacture = carRequestModel.getManufacture();
         this.model = carRequestModel.getModel();
-        this.caroserie = caroserie;
+        this.caroserie = foundCaroserie(caroserie);
         this.odometer = carRequestModel.getOdometer();
         this.isRepaired = carRequestModel.isRepaired();
         this.client = client;
@@ -52,60 +57,35 @@ public class Car {
         this.client = client;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public Car() {
     }
 
-    public Caroserie getCaroserie() {
-        return caroserie;
+
+
+
+    private Car.Caroserie foundCaroserie(String caroserie){
+        switch(caroserie) {
+            case "Coupe":
+                return Caroserie.COUPE;
+            case "Sedan":
+                return Caroserie.SEDAN;
+
+            case "Pickup":
+                return Caroserie.PICKUP;
+
+            case "Hatchback":
+                return Caroserie.HATCHBACK;
+
+            case "Minivan":
+                return Caroserie.MINIVAN;
+
+            case "Liftback":
+                return Caroserie.LIFTBACK;
+            default:
+                return Caroserie.UNKNOWN;
+        }
     }
 
-    public void setCaroserie(Caroserie caroserie) {
-        this.caroserie = caroserie;
-    }
-
-    public String getManufacture() {
-        return Manufacture;
-    }
-
-    public void setManufacture(String manufacture) {
-        Manufacture = manufacture;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public Long getOdometer() {
-        return odometer;
-    }
-
-    public void setOdometer(Long odometer) {
-        this.odometer = odometer;
-    }
-
-    public Boolean getRepaired() {
-        return isRepaired;
-    }
-
-    public void setRepaired(Boolean repaired) {
-        isRepaired = repaired;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
 
     public void updateCar(CarRequestModel carRequest){
@@ -113,6 +93,7 @@ public class Car {
         this.Manufacture = carRequest.getManufacture();
         this.odometer = carRequest.getOdometer();
         this.isRepaired = carRequest.isRepaired();
+        this.caroserie = foundCaroserie(carRequest.getCaroserie());
     }
 
 

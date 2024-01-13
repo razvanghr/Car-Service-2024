@@ -2,6 +2,7 @@ package razvanghr.CarService.service;
 
 
 import org.springframework.stereotype.Service;
+import razvanghr.CarService.exception.ClientNameNotFound;
 import razvanghr.CarService.exception.ClientNotExist;
 import razvanghr.CarService.exception.ClientsNotFound;
 import razvanghr.CarService.model.Client;
@@ -54,6 +55,16 @@ public class ClientService {
         }
 
        return optionalClient.get();
+    }
+
+//    Search Clinet by firstName / lastName
+
+    public Client searchClientbyName(String firstName , String lastName) throws ClientNameNotFound {
+        Optional<Client> optionalClient = clientRepository.findByFirstNameAndLastName(firstName , lastName);
+
+        optionalClient.orElseThrow(()-> new ClientNameNotFound());
+
+        return optionalClient.get();
     }
 
 

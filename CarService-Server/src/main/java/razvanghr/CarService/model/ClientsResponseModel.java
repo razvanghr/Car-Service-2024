@@ -1,7 +1,11 @@
 package razvanghr.CarService.model;
 
+import lombok.Data;
+
 import java.util.List;
 
+
+@Data
 public class ClientsResponseModel {
 
     private List<Client> clients;
@@ -15,27 +19,4 @@ public class ClientsResponseModel {
         this.carNumbers = carNumbers;
     }
 
-    public int getCarNumbers() {
-        return carNumbers;
-    }
-
-    public void setCarNumbers(int carNumbers) {
-        this.carNumbers = carNumbers;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-
-    public int getClientsNumber() {
-        return clientsNumber;
-    }
-
-    public void setClientsNumber(int clientsNumber) {
-        this.clientsNumber = clientsNumber;
-    }
 }

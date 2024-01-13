@@ -77,4 +77,13 @@ public class ClientController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
     }
+
+    @GetMapping("/findByName")
+    public ResponseEntity<?> findClientByName(@RequestParam String firstName ,@RequestParam String lastName){
+        try{
+            return ResponseEntity.ok().body(clientService.searchClientbyName(firstName , lastName));
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+    }
 }

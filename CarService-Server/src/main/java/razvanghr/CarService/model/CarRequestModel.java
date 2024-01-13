@@ -1,12 +1,20 @@
 package razvanghr.CarService.model;
 
+
+import lombok.Data;
+
+@Data
 public class CarRequestModel {
 
     private String manufacture;
     private String model;
     private Long odometer;
     private boolean isRepaired;
+    private String  caroserie;
 
+
+    public CarRequestModel() {
+    }
 
     public CarRequestModel(String manufacture, String model, Long odometer, boolean isRepaired) {
         this.manufacture = manufacture;
@@ -15,35 +23,13 @@ public class CarRequestModel {
         this.isRepaired = isRepaired;
     }
 
-    public String getManufacture() {
-        return manufacture;
-    }
-
-    public void setManufacture(String manufacture) {
+    public CarRequestModel(String manufacture, String model, Long odometer, boolean isRepaired, String caroserie) {
         this.manufacture = manufacture;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
         this.model = model;
-    }
-
-    public Long getOdometer() {
-        return odometer;
-    }
-
-    public void setOdometer(Long odometer) {
         this.odometer = odometer;
+        this.isRepaired = isRepaired;
+        this.caroserie = caroserie;
     }
 
-    public boolean isRepaired() {
-        return isRepaired;
-    }
 
-    public void setRepaired(boolean repaired) {
-        isRepaired = repaired;
-    }
 }

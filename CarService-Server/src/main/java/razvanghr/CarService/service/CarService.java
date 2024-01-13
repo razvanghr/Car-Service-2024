@@ -32,14 +32,11 @@ public class CarService {
 
         Optional<Client> optionalClient = clientRepository.findById(client_id);
         optionalClient.orElseThrow(()->new ClientNotExist());
-        Car car = new Car(carRequestModel, optionalClient.get(), Car.Caroserie.CORSA);
+        Car car = new Car(carRequestModel, optionalClient.get(), carRequestModel.getCaroserie());
         carRepository.save(car);
 
 
     }
-
-
-//    Read Car
 
 
 //    Delete Car
