@@ -76,7 +76,7 @@ const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
           <input
             type="text"
             value={updateData?.carId}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUpdateData({
                 ...updateData,
                 carId: e.target.value,
@@ -88,7 +88,7 @@ const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
         <input
           type="text"
           value={updateData?.manufacture}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setUpdateData({
               ...updateData,
               manufacture: e.target.value,
@@ -101,7 +101,7 @@ const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
         <input
           type="text"
           value={updateData?.model}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setUpdateData({
               ...updateData,
               model: e.target.value,
@@ -115,7 +115,7 @@ const UpdateCar = ({ getClientData }: TUpdateDataProps) => {
           type="number"
           min={0}
           value={updateData?.odometer}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setUpdateData({
               ...updateData,
               odometer: Number(e.target.value),

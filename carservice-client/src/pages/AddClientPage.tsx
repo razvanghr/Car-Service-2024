@@ -48,7 +48,7 @@ const AddClientPage = () => {
         <input
           type="text"
           value={addClient?.firstName}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setAddClient({
               ...addClient,
               firstName: e.target.value,
@@ -61,7 +61,7 @@ const AddClientPage = () => {
         <input
           type="text"
           value={addClient?.lastName}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setAddClient({
               ...addClient,
               lastName: e.target.value,

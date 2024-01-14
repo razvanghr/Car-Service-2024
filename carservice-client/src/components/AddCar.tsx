@@ -67,7 +67,7 @@ const AddCar = ({ getClientData, id }: TAddCarProps) => {
         <input
           type="text"
           value={addCarData?.manufacture}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setAddCarData({
               ...addCarData,
               manufacture: e.target.value,
@@ -80,7 +80,7 @@ const AddCar = ({ getClientData, id }: TAddCarProps) => {
         <input
           type="text"
           value={addCarData?.model}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setAddCarData({
               ...addCarData,
               model: e.target.value,
@@ -94,7 +94,7 @@ const AddCar = ({ getClientData, id }: TAddCarProps) => {
           type="number"
           min={0}
           value={addCarData?.odometer}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setAddCarData({
               ...addCarData,
               odometer: Number(e.target.value),

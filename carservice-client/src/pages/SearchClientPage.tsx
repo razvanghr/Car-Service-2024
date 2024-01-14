@@ -53,7 +53,7 @@ const SearchClientPage = () => {
         <input
           type="text"
           value={searchClient?.firstName}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSearchClient({
               ...searchClient,
               firstName: e.target.value,
@@ -66,7 +66,7 @@ const SearchClientPage = () => {
         <input
           type="text"
           value={searchClient?.lastName}
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSearchClient({
               ...searchClient,
               lastName: e.target.value,
